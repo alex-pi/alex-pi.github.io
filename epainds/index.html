@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="js/lodash.min.js"></script>
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/page-content.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <script src="js/graphUtils.js"></script>
+  <script src="js/dataHelper.js"></script>
+  <script src="js/graphConfigs.js"></script>
+  <script src="js/stackBarsGraphHelper.js"></script>
+  <script src="js/barsGraphHelper.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/lineGraphHelper.js"></script>
+
+</head>
+
+<body id="body_page">
+
+<div id="intro_section" class="main container">
+  <h1>EPA Climate Change Indicators</h1>
+  <div class="cleancolcontainer">
+  <p class="indtext introtext">In 2016 the EPA (Environmental Protection Agency) presented an comprehensive report
+    (found <a href="https://www.epa.gov/climate-indicators/downloads-indicators-report" target="_blank">here</a>)
+    on the different indicators for climate change. The agency processed and categorized data from other agencies to create this report.
+    Unfortunately, the agency hasn't produced a similar report as of 2020. In that sense, this page is a shout out to the scientific
+    community to keep up the good work.</p>
+  <p class="indtext introtext">This page presents some of those indicators and how they are related. The text content are extracts from the EPA report with almost no
+    paraphrasing from my side. The reader should consider that my intention is to present correlations amongst the indicators and not
+  to drive conclusions on this very complex topic.</p>
+  </div>
+</div>
+
+<div id="main_section" class="main container">
+  <h2>Navigate the Climate Change Indicators</h2>
+  <div class="container">
+    <svg id="main-graph" width="690" height="320"></svg>
+  </div>
+  <h2 id="ind_title">[Select an indicator node from the graph]</h2>
+  <div id="ind_section" class="flexcolumn padded">
+
+    <div class="flexrow indcont container padded">
+      <div>
+        <h3>Overview</h3>
+        <p id="ind_overview" class="indtext indoverview"></p>
+      </div>
+      <svg id="ind_fig" width="550" height="350"></svg>
+    </div>
+    <div id="about_fig_sec" class="flexrow justend">
+      <div>
+        <h3>About this graph</h3>
+        <p id="ind_fig_text" class="indtext indfigtext"></p>
+      </div>
+    </div>
+  </div>
+  <div id="nodesTooltip" class="toolTip"></div>
+  <div id="linksTooltip" class="toolTip linksToolTip">
+    <h4 id="title"></h4>
+    <p id="text"></p>
+  </div>
+</div>
+<script>
+  (function(){
+    main.init();
+  })();
+</script>
+</body>
+
+</html>
