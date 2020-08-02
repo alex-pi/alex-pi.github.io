@@ -686,7 +686,6 @@ const graphConfigs = (function () {
   //heavy-precip_fig
   configs['heavy-precip_fig'] = (function () {
     const [width, height] = [630, 350];
-    //const xDomain = [1910, 2020];
     const yDomain = [0, 25];
     const gc = {
       width: width,
@@ -698,7 +697,7 @@ const graphConfigs = (function () {
       yTickValues: _.range(0, 30, 5),
       xTickValues: _.range(1910, 2020, 10),
       barStyle: fn => {
-        debugger;
+        //debugger;
         return d => d[fn] < 10.5? 'neutralBar':'redBar'
       },
       baseLine: {
