@@ -325,6 +325,7 @@ const main = (function () {
             indTitle.innerHTML = indDetails.ind_desc;
             indOverview.innerHTML = `<q>${indDetails.ind_text}</q>`;
             indFigText.innerHTML = `<q>${indDetails.fig_desc}</q>`;
+            window.scrollTo(0,document.body.scrollHeight);
           });
     }
   };
