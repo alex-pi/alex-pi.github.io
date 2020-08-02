@@ -1,5 +1,4 @@
 body {
-  /*font-family: "Source Serif Pro",Iowan Old Style,Apple Garamond,Palatino Linotype;*/
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 14px;
   display: flex;
@@ -50,6 +49,11 @@ div.main {
   justify-content: center;
 }
 
+.selfend {
+  display: flex;
+  align-self: flex-end;
+}
+
 .cleancolcontainer {
   display: flex;
   flex-direction: column;
@@ -62,6 +66,10 @@ p.indtext {
   font-size: 14px;
   text-align: justify;
   text-justify: inter-word;
+}
+
+p.credits {
+  font-size: 10px;
 }
 
 #ind_section > div{
@@ -166,6 +174,7 @@ circle.affordOff {stroke: white; stroke-width: 1;}
   text-justify: inter-word;
   margin: 5px 0px 0px 0px;
 }
+/* End force graph styles */
 
 /* Graph Indicators styles */
 .tickBaseLine line{
@@ -233,7 +242,7 @@ path.domain {
   font-family: sans-serif;
 }
 .indBadAnnotationsSmall {
-  fill: #f16a72;
+  fill: #6c4f51;
   font-size: 12px;
   font-weight: bold;
   font-family: sans-serif;
@@ -250,5 +259,5 @@ path.domain {
   fill: #992c36;
   opacity: 0.7;
 }
-/* Graph styles */
+/* End Graph styles */
 

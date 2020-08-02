@@ -42,9 +42,9 @@
     on the different indicators for climate change. The agency processed and categorized data from other agencies to create this report.
     Unfortunately, the agency hasn't produced a similar report as of 2020. In that sense, this page is a shout out to the scientific
     community to keep up the good work.</p>
-  <p class="indtext introtext">This page presents some of those indicators and how they are related. The text content are extracts from the EPA report with almost no
-    paraphrasing from my side. The reader should consider that my intention is to present correlations between the indicators and not
-  to drive conclusions on this very complex topic.</p>
+  <p class="indtext introtext">By using a graph, this page presents some of those indicators and how they are related.
+    The text content are extracts from the EPA report with almost no paraphrasing from my side.
+    By using the d3 library I'm trying to give new life to some of the data presented in the EPA report.</p>
   </div>
 </div>
 
@@ -63,7 +63,12 @@
       </div>
       <svg id="ind_fig" width="550" height="350"></svg>
     </div>
-    <div id="about_fig_sec" class="flexrow justend">
+    <div id="about_fig_sec" class="flexrow indcont">
+      <div class="selfend">
+        <p class="credits">
+          <b>Created by</b>: Alejandro Pimentel, <b>Sources</b>: <a href="https://www.epa.gov/climate-indicators/downloads-indicators-report" target="_blank">EPA indicators report</a>
+        </p>
+      </div>
       <div>
         <h3>About this graph</h3>
         <p id="ind_fig_text" class="indtext indfigtext"></p>
