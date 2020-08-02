@@ -1,13 +1,13 @@
+/**
+ * This module is used to produce the only stack bars graph used in the project.
+ * */
 const stackBarsGraphHelper = (function () {
   const sbgh = {};
 
   sbgh.draw = function (svgId, idGraph, data) {
     const svg = d3.select(`#${svgId}`);
 
-    //const gc = _.merge(defaults, config);
     const gc = graphConfigs[idGraph];
-
-    const formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
 
     svg.attr('width', gc.width);
     svg.attr('height', gc.height);
@@ -27,7 +27,7 @@ const stackBarsGraphHelper = (function () {
     const dataP = _.map(data, d => {
       d.total = d3.sum(gc.ySeriesNames, c => d[c]);
       return d;
-    });//.sort((a, b) => b.total - a.total);
+    });
 
     const series = d3.stack()
       .keys(gc.ySeriesNames)
@@ -76,7 +76,7 @@ const stackBarsGraphHelper = (function () {
         .attr("height", d => yScale(d[0]) - yScale(d[1]))
         .attr("width", xScale.bandwidth())
       .append("title")
-        .text(d => `${d.data['Year']}, ${d.key} -> ${formatValue(d.data[d.key])}`);
+        .text(d => `${d.data['Year']}, ${d.key}, ${d.data[d.key]}`);
 
     graphUtils.addLegends({
       svg: svg,

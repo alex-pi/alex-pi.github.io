@@ -1,3 +1,8 @@
+/**
+ * This is a basic generalization for producing line charts with d3. Since I’m using a lot of line charts,
+ * creating this module, while challenging, it saved me a lot of time and code repetition.
+ * */
+
 const lineGraphHelper = (function () {
   const lgh = {};
 
@@ -123,24 +128,7 @@ const lineGraphHelper = (function () {
       //.tickFormat(d3.format('.0s'))
       .tickSize(-lgc.innerWidth);
 
-    //applyIf.apply(yAxis, [{'tickValues': lgc.yTickValues}]);
     yAxisG.call(yAxis);
-
-    /*if (baseLine.point != undefined) {
-      yAxisG.selectAll("g")
-        .filter(d => d == baseLine.point)
-        .attr('class', 'baseLine');
-      //.style("stroke-width", 2)
-      //.style("stroke-dasharray", 6);
-    }
-
-    if (!_.isNil(baseLine.text)) {
-      viewPort.append('text')
-        .attr('class', 'baseLineText')
-        .attr('x', baseLine.xy[0])
-        .attr('y', baseLine.xy[1])
-        .text(baseLine.text);
-    }*/
 
     graphUtils.addBaseLine(viewPort, yAxisG, baseLine);
 
@@ -181,8 +169,6 @@ const lineGraphHelper = (function () {
         })
         .attr("stroke", d => colors(d.name))
         .attr('class', d => d.styleClass || 'lineSeriesMid');
-        //.style("stroke-width", 3)
-        //.style("fill", "none");
 
     addLegends(svg, lgc); //TODO I should use the viewPort not the svg
     graphUtils.addAnnotations(viewPort, lgc, series);

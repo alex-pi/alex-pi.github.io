@@ -1,3 +1,7 @@
+/**
+ * This module has functionality to load the data (mainly on csv format) and pre-process it when need it.
+ *
+ * */
 const dataHelper = (function() {
   let neighs;
   let nodes;

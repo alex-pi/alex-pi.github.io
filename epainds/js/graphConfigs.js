@@ -1,3 +1,10 @@
+/**
+ *  This module contains the different configurations for each graph used in the scenes.
+ *  Now that I look at it, seems like I managed to create a very simply set of semantics to
+ *  describe the charts needed in the scenes.
+ *
+ * */
+
 const graphConfigs = (function () {
   const configs = {};
 
@@ -9,7 +16,6 @@ const graphConfigs = (function () {
       height: 350,
       xAxisTitle: 'Year',
       yAxisTitle: 'Cumulative mass balance',
-      //seriesNames: ['scg', 'gg', 'wg'],
       xDomain: xDomain,
       yDomain: yDomain,
       xTickValues: _.range(xDomain[0], xDomain[1] + 5, 5),
@@ -520,7 +526,6 @@ const graphConfigs = (function () {
     const xDomain = [1880, 2020];
     const yDomain = [-2, 2];
     const [width, height] = [550, 350];
-    const colorBounds = '#9acb8d';
 
     const ySeries = [{
       domain: yDomain,

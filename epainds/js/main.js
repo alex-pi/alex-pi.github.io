@@ -1,8 +1,12 @@
-//const svg = d3.select('svg');
+/**
+ * This file contains the code for the force directed graph and the main entry module. It coordinates what data to load and scene to show
+ *
+ * */
 
-
-// TODO rename to graphEventHandler
-const nodeHandler = (function () {
+/**
+ * Manages all the events concerning  the force-directed graph
+ * */
+const graphEventHandler = (function () {
   const nh = {};
   let svgGraph;
   let svgOffSets;
@@ -40,13 +44,13 @@ const nodeHandler = (function () {
     const previousNode = selectedNode;
     if (!_.isEmpty(selectedNode)) {
       d3.select(selectedNode.circle).transition()
-        .attr("r", node_radius)
-        .style('opacity', 0.72)
-        .attr("fill", d3.schemeTableau10[selectedNode.d.cat_id - 1]);
+          .attr("r", node_radius)
+          .style('opacity', 0.72)
+          .attr("fill", d3.schemeTableau10[selectedNode.d.cat_id - 1]);
     }
     d3.select(this).transition()
-      //.attr("fill", "black")
-      .attr("r", node_radius * 1.6);
+        //.attr("fill", "black")
+        .attr("r", node_radius * 1.6);
     selectedNode = {
       d: d,
       circle: this
@@ -59,12 +63,12 @@ const nodeHandler = (function () {
     //debugger;
     console.log('mouseoverLink');
     d3.select(this).transition()
-      .attr('class', 'linkh');
+        .attr('class', 'linkh');
 
     linkTooltip
-      .style('left', `${linkTooltip.calcPosition.x}px`)
-      .style('top', `${linkTooltip.calcPosition.y}px`)
-      .style('display', 'inline-block');
+        .style('left', `${linkTooltip.calcPosition.x}px`)
+        .style('top', `${linkTooltip.calcPosition.y}px`)
+        .style('display', 'inline-block');
     linkTooltipText.html(`${d.desc}`);
     linkTooltipTitle.html(`${d.source.ind_desc} and  ${d.target.ind_desc}`);
   };
@@ -73,46 +77,46 @@ const nodeHandler = (function () {
     if (d3.event.defaultPrevented) return;
     console.log('mouseoverLink');
     d3.select(this).transition()
-      .attr('class', 'link');
+        .attr('class', 'link');
     linkTooltip.style('display', 'none');
   };
 
   nh.transitionNodesSize = function (node, r) {
     d3.select(node).transition()
-      //.attr("fill", "black")
-      .attr("r", r);
+        //.attr("fill", "black")
+        .attr("r", r);
   };
 
   nh.showAffords = function(d, i) {
     svgGraph.selectAll('line')
-      .transition()
-      .attr('class', 'linkh');
+        .transition()
+        .attr('class', 'linkh');
 
     svgGraph.selectAll('circle.affordOff')
-      .transition()
-      .attr('class', 'affordOn');
+        .transition()
+        .attr('class', 'affordOn');
   };
 
   nh.hideAffords = function(d, i) {
     svgGraph.selectAll('line')
-      .transition()
-      .attr('class', 'link');
+        .transition()
+        .attr('class', 'link');
 
     svgGraph.selectAll('circle.affordOn')
-      .transition()
-      .attr('class', 'affordOff');
+        .transition()
+        .attr('class', 'affordOff');
   };
 
   nh.drag = d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended);
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
 
   nh.ticked = function ticked() {
     linksel.attr('x1', d => d.source.x)
-      .attr('y1', d => d.source.y)
-      .attr('x2', d => d.target.x)
-      .attr('y2', d => d.target.y);
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y);
 
     nodesel.attr('transform', d => `translate(${d.x}, ${d.y})`);
   };
@@ -149,12 +153,12 @@ const nodeHandler = (function () {
     _.forEach(nodesD, nd => {
       //const x = nd
       tooltip
-        //.style('left', `${d3.event.pageX + 10}px`)
-        //.style('top', `${d3.event.pageY}px`)
-        .style('left', `${svgOffSets.left + nd.x + 10}px`)
-        .style('top', `${svgOffSets.top + nd.y}px`)
-        .style('display', 'inline-block')
-        .html(`${nd.ind_desc}`);
+          //.style('left', `${d3.event.pageX + 10}px`)
+          //.style('top', `${d3.event.pageY}px`)
+          .style('left', `${svgOffSets.left + nd.x + 10}px`)
+          .style('top', `${svgOffSets.top + nd.y}px`)
+          .style('display', 'inline-block')
+          .html(`${nd.ind_desc}`);
     });
   }
 
@@ -180,6 +184,12 @@ const nodeHandler = (function () {
   return nh;
 });
 
+
+
+/**
+ * Builds the force-directed graph and the elements needed in the main svg.
+ *
+ * */
 const forceGraph = (function (config, eventHandler, dh) {
   const svg = config.svg;
   const [width, height] = [svg.attr('width'), svg.attr('height')];
@@ -190,12 +200,12 @@ const forceGraph = (function (config, eventHandler, dh) {
 
   const init = function () {
     const simulation = d3.forceSimulation()
-      .force('link', d3.forceLink()
-        .distance(50)
-        .id(d => d.ind_id))
-      .force('charge', d3.forceManyBody().strength(-40))
-      .force('center', d3.forceCenter(width / 2 - 20, height / 2))
-      .nodes(dh.nodes);
+        .force('link', d3.forceLink()
+            .distance(50)
+            .id(d => d.ind_id))
+        .force('charge', d3.forceManyBody().strength(-40))
+        .force('center', d3.forceCenter(width / 2 - 20, height / 2))
+        .nodes(dh.nodes);
     //.alphaMin(0.222);
 
     simulation.force('link').links(dh.links);
@@ -204,32 +214,32 @@ const forceGraph = (function (config, eventHandler, dh) {
     //.attr('transform', `translate(0,0)`);
 
     const linksel = ggraph
-      .selectAll('.link') // difference between selecting .link vs line
-      .data(dh.links).enter()
-      //.append('g')
-      .append('line')
-      .attr('class', 'link')
-      .attr('id', dl => `${dl.source.ind_id}:${dl.target.ind_id}`)
-      .on('mouseover', eventHandler.mouseOverLink)
-      .on('mouseout', eventHandler.mouseOutLink);
+        .selectAll('.link') // difference between selecting .link vs line
+        .data(dh.links).enter()
+        //.append('g')
+        .append('line')
+        .attr('class', 'link')
+        .attr('id', dl => `${dl.source.ind_id}:${dl.target.ind_id}`)
+        .on('mouseover', eventHandler.mouseOverLink)
+        .on('mouseout', eventHandler.mouseOutLink);
 
     const nodesel = ggraph
-      .selectAll('.node')
-      .data(dh.nodes)
-      .enter().append('g')
-      .attr('class', 'node')
-      .call(eventHandler.drag);
+        .selectAll('.node')
+        .data(dh.nodes)
+        .enter().append('g')
+        .attr('class', 'node')
+        .call(eventHandler.drag);
 
     nodesel.append('circle')
-      .attr('class', 'affordOff')
-      .attr('id', d => d.ind_id)
-      .attr("fill", (d, i) => d3.schemeTableau10[d.cat_id - 1])
-      .attr('r', node_radius);
+        .attr('class', 'affordOff')
+        .attr('id', d => d.ind_id)
+        .attr("fill", (d, i) => d3.schemeTableau10[d.cat_id - 1])
+        .attr('r', node_radius);
 
     nodesel.selectAll("circle")
-      .on('click', eventHandler.clickedNode)
-      .on('mouseover', eventHandler.mouseOverNode)
-      .on('mouseout', eventHandler.mouseOutNode);
+        .on('click', eventHandler.clickedNode)
+        .on('mouseover', eventHandler.mouseOverNode)
+        .on('mouseout', eventHandler.mouseOutNode);
 
     graphUtils.addAffordanceLegends({
       g: ggraph,
@@ -273,6 +283,13 @@ const forceGraph = (function (config, eventHandler, dh) {
 
 });
 
+
+/**
+ * The starting point of the application.
+ * The hooks.clickedNode is the function that controls change of scenes,
+ * it coordinates all the other modules as needed.
+ *
+ * */
 const main = (function () {
   const mo = {};
   let indSection;
@@ -287,7 +304,6 @@ const main = (function () {
       console.log('hook!');
 
       if (!_.isEmpty(previousNode)) {
-        //indSection.fadeTo('fast', 0);
         graphUtils.clean(svg);
       } else graphUtils.show(indSection);
 
@@ -298,22 +314,24 @@ const main = (function () {
         return;
       }
       dataHelper.loadData(figId, `data/${figId}.csv`)
-        .then(data => {
-          if('stackedBars' == figType)
-            svg = stackBarsGraphHelper.draw('ind_fig', figId, data);
-          else if('bars' == figType)
-            svg = barsGraphHelper.draw('ind_fig', figId, data);
-          else
-            svg = lineGraphHelper.draw('ind_fig', figId, data);
-          const indDetails = dataHelper.find('fig_id', figId);
-          indTitle.innerHTML = indDetails.ind_desc;
-          indOverview.innerHTML = `<q>${indDetails.ind_text}</q>`;
-          indFigText.innerHTML = `<q>${indDetails.fig_desc}</q>`;
-          //indSection.fadeTo('medium', 1);
-        });
+          .then(data => {
+            if('stackedBars' == figType)
+              svg = stackBarsGraphHelper.draw('ind_fig', figId, data);
+            else if('bars' == figType)
+              svg = barsGraphHelper.draw('ind_fig', figId, data);
+            else
+              svg = lineGraphHelper.draw('ind_fig', figId, data);
+            const indDetails = dataHelper.find('fig_id', figId);
+            indTitle.innerHTML = indDetails.ind_desc;
+            indOverview.innerHTML = `<q>${indDetails.ind_text}</q>`;
+            indFigText.innerHTML = `<q>${indDetails.fig_desc}</q>`;
+          });
     }
   };
 
+  /**
+   * It is called from the index.html to initialized the visualization
+   * */
   mo.init = async function () {
     indSection = document.getElementById('ind_section');
     graphUtils.hide(indSection);
@@ -323,7 +341,7 @@ const main = (function () {
     bodyPage = document.getElementById('body_page');
     mo.graphData = await dataHelper.init();
     mo.svgForceGraph = d3.select('#main-graph');
-    mo.geh = nodeHandler();
+    mo.geh = graphEventHandler();
     mo.fg = forceGraph({
       svg: mo.svgForceGraph,
       node_radius: 13,

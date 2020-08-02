@@ -1,4 +1,7 @@
-
+/**
+ * Other modules use this for common tasks like adding labels, annotations, axes to name a few.
+ *
+ * */
 const graphUtils = (function(){
 
   const utils = {};
@@ -103,14 +106,9 @@ const graphUtils = (function(){
 
     const annotation = conf.g
       .append('g')
-      //.style('background-color', '#7b7a7a')
       .attr('transform', `translate(${annXOffset},${annYOffset})`);
-      //.attr('transform', `translate(${conf.x},${conf.y})`);
 
     annotation.append('text')
-      //.attr('x', 10)
-      //.attr('y', 0)
-      //.attr('alignment-baseline', 'middle')
       .attr('class', conf.styleClass || 'indAnnotations')
       .attr('text-anchor', 'middle')
       .text(conf.text);
@@ -123,14 +121,12 @@ const graphUtils = (function(){
         .attr('cy', conf.y)
         .attr("opacity", .6)
         .attr("fill", 'green')
-        //.attr("stroke", "gray")
         .attr('r', 10);
 
       const lineYOffset = (annYOffset > conf.y)? annYOffset - 9: annYOffset;
       conf.g.append("polyline")
         .attr("stroke", "green")
         .attr("opacity", .6)
-        //.style("fill", "green")
         .attr("stroke-width", 2)
         .style("stroke-dasharray", 2)
         .attr("points", `${annXOffset},${lineYOffset} , ${conf.x},${conf.y}`);
@@ -141,7 +137,6 @@ const graphUtils = (function(){
 
     const glegends = conf.svg
       .append('g')
-      //.style('background-color', '#7b7a7a')
       .attr('transform', `translate(${conf.x},${conf.y})`);
 
     if(!_.isNil(conf.bg)) {

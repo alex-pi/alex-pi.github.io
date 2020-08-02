@@ -1,3 +1,8 @@
+/**
+ * This module produces the 2 bar charts used in the project.
+ * It is also a basic generalization for producing bar charts with d3.
+ *
+ * */
 const barsGraphHelper = (function () {
   const bgh = {};
 
