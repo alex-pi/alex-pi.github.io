@@ -1,0 +1,137 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f4f8;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-left: 8px solid #007acc;
+  overflow: hidden;
+
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  border-radius: 7px;
+  border-bottom: 7px solid #007acc;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 26px;
+  color: #007acc;
+}
+
+.header-left p, .header-right p {
+  margin: 4px 0;
+  color: #555555;
+}
+
+header p {
+  font-size: 14px;
+}
+
+.box-shadow {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+main p {
+  margin: 12px 0;
+  color: #333333;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+main p:first-of-type {
+  margin-top: 0;
+}
+
+main p:last-child {
+  margin-bottom: 0;
+}
+
+header .header-right p {
+  text-align: right;
+}
+
+body {
+  background-color: #e0e7ef;
+}
+
+.skill-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.skill {
+  flex-basis: calc(50% - 15px); /* considering 15px as the desired space between the columns */
+  margin-bottom: 30px; /* change this for the desired space between the rows */
+}
+/*.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.skill {
+  flex-basis: calc(50% - 15px); !* considering 15px as the desired space between the columns *!
+  margin-bottom: 30px; !* change this for the desired space between the rows *!
+}*/
+/*.skills {
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}*/
+
+.skills h2 {
+  font-size: 20px;
+  color: #007acc;
+  margin-bottom: 15px;
+}
+
+/*.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}*/
+
+/*.skill {
+  flex: 1 1 calc(50% - 20px); !* Two columns with some space in between *!
+  margin-bottom: 20px;
+}*/
+
+.skill p {
+  margin: 0 0 5px;
+  font-size: 16px;
+  color: #333333;
+}
+
+.skill-bar {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 20px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #007acc;
+  border-radius: 5px 0 0 5px;
+}
